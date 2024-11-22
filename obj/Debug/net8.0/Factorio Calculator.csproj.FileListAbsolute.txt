@@ -1,0 +1,14 @@
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\bin\Debug\net8.0\Factorio Calculator.exe
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\bin\Debug\net8.0\Factorio Calculator.deps.json
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\bin\Debug\net8.0\Factorio Calculator.runtimeconfig.json
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\bin\Debug\net8.0\Factorio Calculator.dll
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\bin\Debug\net8.0\Factorio Calculator.pdb
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\obj\Debug\net8.0\Factorio Calculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\obj\Debug\net8.0\Factorio Calculator.AssemblyInfoInputs.cache
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\obj\Debug\net8.0\Factorio Calculator.AssemblyInfo.cs
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\obj\Debug\net8.0\Factorio Calculator.csproj.CoreCompileInputs.cache
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\obj\Debug\net8.0\Factorio Calculator.dll
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\obj\Debug\net8.0\refint\Factorio Calculator.dll
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\obj\Debug\net8.0\Factorio Calculator.pdb
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\obj\Debug\net8.0\Factorio Calculator.genruntimeconfig.cache
+C:\Users\thoma\Documents\VSCODE\Factorio Calculator\obj\Debug\net8.0\ref\Factorio Calculator.dll

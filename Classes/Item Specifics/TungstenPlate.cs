@@ -13,6 +13,8 @@ public class TungstenPlate : Item
     public override string Name => "Tungsten Plate";
     public override string UUID => "tungstenPlate";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

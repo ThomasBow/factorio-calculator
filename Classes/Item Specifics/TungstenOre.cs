@@ -13,6 +13,8 @@ public class TungstenOre : Ore
     public override string Name => "Tungsten Ore";
     public override string UUID => "tungstenOre";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

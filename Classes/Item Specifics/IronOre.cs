@@ -11,8 +11,9 @@ public class IronOre : Ore
     #endregion
 
     public override string Name => "Iron Ore";
-
     public override string UUID => "ironOre";
+
+    public override bool IsIntermediate => true; 
 
     private IronOre()
     {

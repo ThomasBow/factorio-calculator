@@ -15,7 +15,9 @@ public class CryogenicPlant : CraftingEntityWithModules
     #endregion
 
     public override string Name => "Cryogenic Plant";
-    public override string UUID => "cryogenicPlant";  
+    public override string UUID => "cryogenicPlant"; 
+
+    public override bool IsIntermediate => false;  
 
     public override int ModuleCount => 2;
 

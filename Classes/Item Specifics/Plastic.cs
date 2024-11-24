@@ -10,13 +10,10 @@ public class Plastic : Item
     public static Plastic Instance => _instance.Value;
     #endregion
 
-    public override string Name { get; } = "Plastic";
-    public override string UUID { get; } = "plastic";
+    public override string Name => "Plastic";
+    public override string UUID => "plastic";
+
+    public override bool IsIntermediate => true; 
 
     public override List<Recipe> Recipes => throw new NotImplementedException();
-
-    public Plastic() : base() 
-    { 
-
-    }
 }

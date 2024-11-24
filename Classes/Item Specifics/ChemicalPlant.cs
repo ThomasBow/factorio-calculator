@@ -13,6 +13,8 @@ public class ChemicalPlant : CraftingEntityWithModules
     public override string Name => "Chemical Plant";
     public override string UUID => "chemicalPlant";  
 
+    public override bool IsIntermediate => false; 
+
     public override int ModuleCount => 3;
 
     public override float CraftingSpeed => 1.0f;

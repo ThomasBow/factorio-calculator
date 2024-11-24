@@ -13,6 +13,8 @@ public class Steam : Item
     public override string Name => "Steam";
     public override string UUID => "steam";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

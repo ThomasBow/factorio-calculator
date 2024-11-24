@@ -4,11 +4,15 @@
 
 using System.Diagnostics;
 using System.Reflection;
-using System.Linq;
+
+Module? moduleToUse = null;
 
 void Main(){
     try {
-        List<Item> items = GetItemInstancesNotAbstract();    
+        List<Item> items = GetInstancesNotAbstract<Item>();  
+        items.Sort((a, b) => a.Name.CompareTo(b.Name));  
+
+        List<Module> modules = GetInstancesNotAbstract<Module>();
 
         PrintItemList(items);
 
@@ -18,12 +22,14 @@ void Main(){
 
         int returnStructure = GetReturnStructure();
 
+        GetModulesIfUsed(modules);
+
         if (returnStructure == 1){
-        List<CraftingInfoReturn> infos = GetInfoAboutCrafting(chosenItem, amountToCraft);
-        
-        List<CraftingInfoReturn> summarizedList = GetSummerizedList(infos);
-        
-        PrintCraftingInfoReturnList(summarizedList);
+            List<CraftingInfoReturn> infos = GetInfoAboutCrafting(chosenItem, amountToCraft);
+            
+            List<CraftingInfoReturn> summarizedList = GetSummerizedList(infos);
+            
+            PrintCraftingInfoReturnList(summarizedList);
         }
         else if (returnStructure == 2)
         {
@@ -35,9 +41,9 @@ void Main(){
     catch (Exception e){
         Console.WriteLine(e.Message);
         StackTrace stackTrace = new(e, true);
-        StackFrame frame = stackTrace.GetFrame(0); // Get the top frame
-        int line = frame.GetFileLineNumber(); // Get the line number
-        string file = frame.GetFileName();
+        StackFrame? frame = stackTrace.GetFrame(0); // Get the top frame
+        int? line = frame?.GetFileLineNumber(); // Get the line number
+        string? file = frame?.GetFileName();
         Console.WriteLine($"Error in file: {file} at line: {line}");
     }
     finally {
@@ -45,16 +51,16 @@ void Main(){
     }
 }
 
-List<Item> GetItemInstancesNotAbstract()
+List<InstanceType> GetInstancesNotAbstract<InstanceType>()
 {
     Assembly assembly = Assembly.GetExecutingAssembly();
 
     List<Type> types = assembly.GetTypes().ToList();
 
-    List<Item> items = [];
+    List<InstanceType> instanceTypes = [];
     foreach (Type type in types)
     {
-        if (type.IsSubclassOf(typeof(Item)) == false || type.IsAbstract)
+        if (type.IsSubclassOf(typeof(InstanceType)) == false || type.IsAbstract)
         {
             continue;        
         }  
@@ -66,14 +72,12 @@ List<Item> GetItemInstancesNotAbstract()
         }  
 
         object? @object = instanceProperty.GetValue(null);
-        if (@object is Item item)
+        if (@object is InstanceType instanceType)
         {
-            items.Add(item);
+            instanceTypes.Add(instanceType);
         }
-    }
-
-    items.Sort((a, b) => a.Name.CompareTo(b.Name));
-    return items;
+    }    
+    return instanceTypes;
 }
 
 void PrintItemList(List<Item> items){
@@ -143,9 +147,48 @@ int GetInt(){
     return integer;
 }
 
+void GetModulesIfUsed(List<Module> modules)
+{
+    Console.WriteLine("\n\n\n\n\nWould you like to use modules? (y/n)");
+    string? input = Console.ReadLine();
+
+    if (input == null)
+    throw new($"Invalid input ({input})");
+
+    if (input == "y")
+    {
+        GetModule(modules);
+    }
+    else if (input != "n") 
+    throw new($"Invalid input ({input})");
+}
+
+void GetModule(List<Module> modules)
+{
+    Console.WriteLine("\n\n\n\n\nChoose a module to use:");
+    
+    int i = 1;
+    foreach (Module module in modules)
+    {
+        Console.WriteLine($"{i}: {module.Name}");
+        i++;
+    }
+
+    string? input = Console.ReadLine();
+    if (input == null)
+    throw new($"Invalid input ({input})");
+
+    if (int.TryParse(input, out int choice) == false)
+    throw new($"Invalid input ({input})");
+
+    if (choice < 1 || choice > modules.Count)
+    throw new($"Invalid choice ({choice})");
+
+    moduleToUse = modules[choice - 1];
+}
+
 #region CraftingInfoReturn Method
 List<ItemAndRecipe> cachedChosenRecipes = []; 
-List<ItemAndCount> availableItems = [];
 
 List<CraftingInfoReturn> GetInfoAboutCrafting(Item chosenItem, int amountToCraft){
     // GET RECIPE
@@ -154,12 +197,7 @@ List<CraftingInfoReturn> GetInfoAboutCrafting(Item chosenItem, int amountToCraft
     // GET CRAFTS NEEDED    
     CraftingEntity chosenCraftingMachine = chosenRecipe.CraftingMachine;
 
-    float effectiveCraftingTime = chosenRecipe.CraftingTimeSeconds / chosenCraftingMachine.CraftingSpeed;
-
-    float craftsPerSecond = 1 / effectiveCraftingTime;
-
-    int itemsPerCraft = chosenRecipe.Results.First(result => result.Item == chosenItem).Count;
-    float itemsPerSecond = itemsPerCraft * craftsPerSecond * (1 + chosenCraftingMachine.Productivity);
+    (float craftsPerSecond, float itemsPerSecond) = CalculatePerSecond(chosenItem, chosenRecipe, chosenCraftingMachine);
 
     int craftersNeeded = (int)MathF.Ceiling(amountToCraft / itemsPerSecond);
 
@@ -194,18 +232,13 @@ CraftingInfoTree GetInfoAboutCraftingTree(Item chosenItem, int amountToCraft)
     // GET CRAFTS NEEDED    
     CraftingEntity chosenCraftingMachine = chosenRecipe.CraftingMachine;
 
-    float effectiveCraftingTime = chosenRecipe.CraftingTimeSeconds / chosenCraftingMachine.CraftingSpeed;
-
-    float craftsPerSecond = 1 / effectiveCraftingTime;
-
-    int itemsPerCraft = chosenRecipe.Results.First(result => result.Item == chosenItem).Count;
-    float itemsPerSecond = itemsPerCraft * craftsPerSecond * (1 + chosenCraftingMachine.Productivity);
+    (float craftsPerSecond, float itemsPerSecond) = CalculatePerSecond(chosenItem, chosenRecipe, chosenCraftingMachine);
 
     int craftersNeeded = (int)MathF.Ceiling(amountToCraft / itemsPerSecond);
 
     // ROOT NODE FOR THE CURRENT ITEM
-    CraftingInfoTree rootNode = new CraftingInfoTree(
-        new CraftingInfoReturn(chosenItem, new CraftingEntityAndCount(chosenRecipe.CraftingMachine, craftersNeeded))
+    CraftingInfoTree rootNode = new(
+        new(chosenItem, new(chosenRecipe.CraftingMachine, craftersNeeded))
     );
 
     // GET NEEDED INGREDIENTS
@@ -260,6 +293,65 @@ void PrintAvailableRecpies(List<Recipe> recipes){
         Console.WriteLine($"{i}: \n{recipe}");
         i++;
     }
+}
+
+(float craftsPerSecond, float itemsPerSecond) CalculatePerSecond(Item chosenItem, Recipe chosenRecipe, CraftingEntity chosenCraftingMachine)
+{
+    (float moduleSpeedModifier, float moduleProductivityModifier) = CalculateModuleSpeedAndProductivityForRecipe(chosenRecipe);
+
+    float effectiveChosenCraftingMachineSpeed = chosenCraftingMachine.CraftingSpeed * (1 + moduleSpeedModifier);
+
+    float effectiveCraftingTime = chosenRecipe.CraftingTimeSeconds / effectiveChosenCraftingMachineSpeed;
+
+    float craftsPerSecond = 1 / effectiveCraftingTime;
+
+    int itemsPerCraft = chosenRecipe.Results.First(result => result.Item == chosenItem).Count;
+
+    float itemsPerSecond = itemsPerCraft * craftsPerSecond * (1 + chosenCraftingMachine.Productivity + moduleProductivityModifier);
+
+    return (craftsPerSecond, itemsPerSecond);
+}
+
+(float moduleSpeedModifier, float moduleProductivityModifier) CalculateModuleSpeedAndProductivityForRecipe(Recipe chosenRecipe)
+{
+    float moduleSpeedModifier = CalculateModuleSpeedForRecipe(chosenRecipe);
+    float moduleProductivityModifier = CalculateModuleProductivityForRecipe(chosenRecipe);
+
+    return (moduleSpeedModifier, moduleProductivityModifier);
+}
+
+float CalculateModuleSpeedForRecipe(Recipe chosenRecipe)
+{
+    if (moduleToUse == null)
+    {
+        return 0f;
+    }
+
+    CraftingEntity craftingEntity = chosenRecipe.CraftingMachine;
+    if (craftingEntity is not CraftingEntityWithModules entityWithModules)
+    {
+        return 0f;
+    }
+
+    float totalSpeed = entityWithModules.ModuleCount * moduleToUse.SpeedModifier;
+    return totalSpeed;
+}
+
+float CalculateModuleProductivityForRecipe(Recipe recipe)
+{
+    if (moduleToUse == null)
+    {
+        return 0f;
+    }
+
+    CraftingEntity craftingEntity = recipe.CraftingMachine;
+    if (craftingEntity is not CraftingEntityWithModules entityWithModules)
+    {
+        return 0f;
+    }
+
+    float totalProductivity = entityWithModules.ModuleCount * moduleToUse.ProductivityModifier;
+    return totalProductivity;
 }
 
 List<CraftingInfoReturn> GetSummerizedList(List<CraftingInfoReturn> infos)

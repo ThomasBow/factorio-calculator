@@ -13,6 +13,8 @@ public class CopperCable : Item
     public override string Name => "Copper Cable";
     public override string UUID => "copperCable";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes => 
     [
         new(

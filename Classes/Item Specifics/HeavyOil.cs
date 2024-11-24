@@ -13,6 +13,8 @@ public class HeavyOil : Item
     public override string Name => "Heavy Oil";
     public override string UUID => "heavyOil";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

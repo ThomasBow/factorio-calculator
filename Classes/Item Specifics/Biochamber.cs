@@ -15,7 +15,9 @@ public class Biochamber : CraftingEntityWithModules
     #endregion
     
     public override string Name => "Biochamber";
-    public override string UUID => "biochamber";  
+    public override string UUID => "biochamber"; 
+
+    public override bool IsIntermediate => false;  
 
     public override float CraftingSpeed => 2.0f;
     public override int ModuleCount => 4;

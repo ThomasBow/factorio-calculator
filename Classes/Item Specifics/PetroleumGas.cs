@@ -13,6 +13,8 @@ public class PetroleumGas : Item
     public override string Name => "Petroleum Gas";
     public override string UUID => "petroleumGas";
 
+    public override bool IsIntermediate => true;
+
     public override List<Recipe> Recipes =>
     [
         new(

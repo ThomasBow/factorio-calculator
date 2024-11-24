@@ -13,6 +13,8 @@ public class Pumpjack : CraftingEntityWithModules
     public override string Name => "Pumpjack";
     public override string UUID => "pumpjack";
 
+    public override bool IsIntermediate => false; 
+
     public override float CraftingSpeed => 1.0f;
     public override int ModuleCount => 2;
     

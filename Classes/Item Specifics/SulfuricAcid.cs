@@ -13,6 +13,8 @@ public class SulfuricAcid : Item
     public override string Name => "Sulfuric Acid";
     public override string UUID => "sulfuricAcid";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

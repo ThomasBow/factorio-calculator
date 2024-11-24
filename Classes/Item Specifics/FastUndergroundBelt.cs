@@ -13,6 +13,8 @@ public class FastUndergroundBelt : Item
     public override string Name => "Fast Underground Belt";
     public override string UUID => "fastUndergroundBelt";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

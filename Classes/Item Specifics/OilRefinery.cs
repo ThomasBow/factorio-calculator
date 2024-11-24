@@ -11,7 +11,9 @@ public class OilRefinery : CraftingEntityWithModules
     #endregion
 
     public override string Name => "Oil Refinary";
-    public override string UUID => "oilRefinary";  
+    public override string UUID => "oilRefinary"; 
+
+    public override bool IsIntermediate => false;  
 
     public override int ModuleCount => 3;
 

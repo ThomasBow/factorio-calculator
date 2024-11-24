@@ -13,6 +13,8 @@ public class Lubricant : Item
     public override string Name => "Lubricant";
     public override string UUID => "lubricant";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

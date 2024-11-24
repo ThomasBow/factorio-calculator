@@ -13,6 +13,8 @@ public class TurboTransportBelt : Item
     public override string Name => "Turbo Transport Belt";
     public override string UUID => "turboTransportBelt";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

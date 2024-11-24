@@ -13,6 +13,8 @@ public class Coal : Ore
     public override string Name => "Coal";
     public override string UUID => "coal";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

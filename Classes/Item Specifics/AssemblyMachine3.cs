@@ -11,7 +11,9 @@ public class AssemblyMachine3 : CraftingEntityWithModules
     #endregion
 
     public override string Name => "Assembly Machine 3";
-    public override string UUID => "assemblyMachine3";  
+    public override string UUID => "assemblyMachine3";
+
+    public override bool IsIntermediate => false;
 
     public override int ModuleCount => 4;
 

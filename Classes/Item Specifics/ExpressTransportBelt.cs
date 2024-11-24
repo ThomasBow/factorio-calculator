@@ -13,6 +13,8 @@ public class ExpressTransportBelt : Item
     public override string Name => "Express Transport Belt";
     public override string UUID => "expressTransportBelt";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

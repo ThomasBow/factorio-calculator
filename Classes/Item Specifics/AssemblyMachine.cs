@@ -11,7 +11,9 @@ public class AssemblyMachine : CraftingEntity
     #endregion
 
     public override string Name => "Assembly Machine";
-    public override string UUID => "assemblyMachine";  
+    public override string UUID => "assemblyMachine"; 
+
+    public override bool IsIntermediate => false; 
 
     public override float CraftingSpeed => .5f;
 

@@ -10,8 +10,9 @@ public class RocketFuel : Item
     #endregion
 
     public override string Name => "Rocket Fuel";
-
     public override string UUID => "rocketFuel";
+
+    public override bool IsIntermediate => true; 
 
     public override List<Recipe> Recipes => 
     [

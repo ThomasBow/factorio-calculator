@@ -12,6 +12,8 @@ public class IronGearWheel : Item
     public override string Name => "Iron Gear Wheel";
     public override string UUID => "ironGearWheel";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes => 
     [
         new(

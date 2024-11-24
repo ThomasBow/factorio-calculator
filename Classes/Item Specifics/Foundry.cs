@@ -13,6 +13,8 @@ public class Foundry : CraftingEntityWithModules
     public override string Name => "Foundry";
     public override string UUID => "foundry";  
 
+    public override bool IsIntermediate => false; 
+
     public override int ModuleCount => 4;
     public override float CraftingSpeed => 4.0f;
     public override float Productivity => 0.5f;

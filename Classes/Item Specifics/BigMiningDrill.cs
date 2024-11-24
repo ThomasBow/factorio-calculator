@@ -11,6 +11,9 @@ public class BigMiningDrill : CraftingEntityWithModules
 
     public override string Name => "Big Mining Drill";
     public override string UUID => "bigMiningDrill";
+
+    public override bool IsIntermediate => false; 
+
     public override List<Recipe> Recipes => 
     [
         new(

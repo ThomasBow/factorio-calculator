@@ -13,6 +13,8 @@ public class AdvancedCircuit : Item
     public override string Name => "Advanced Circuit";
     public override string UUID => "advancedCircuit";
 
+    public override bool IsIntermediate => true;
+
     public override List<Recipe> Recipes =>
     [
         new(

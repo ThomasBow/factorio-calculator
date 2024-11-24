@@ -13,6 +13,8 @@ public class Stone : Ore
     public override string Name => "Stone";
     public override string UUID => "stone";
 
+    public override bool IsIntermediate => true;
+
     public override List<Recipe> Recipes =>
     [
         new(

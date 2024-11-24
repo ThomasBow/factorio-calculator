@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thoma\\Documents\\VSCODE\\Factorio Calculator\\Factorio Calculator.csproj",
+      "projectUniqueName": "C:\\Users\\thoma\\Documents\\Git Desktop\\factorio-calculator\\Factorio Calculator.csproj",
       "projectName": "Factorio Calculator",
-      "projectPath": "C:\\Users\\thoma\\Documents\\VSCODE\\Factorio Calculator\\Factorio Calculator.csproj",
+      "projectPath": "C:\\Users\\thoma\\Documents\\Git Desktop\\factorio-calculator\\Factorio Calculator.csproj",
       "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thoma\\Documents\\VSCODE\\Factorio Calculator\\obj\\",
+      "outputPath": "C:\\Users\\thoma\\Documents\\Git Desktop\\factorio-calculator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",

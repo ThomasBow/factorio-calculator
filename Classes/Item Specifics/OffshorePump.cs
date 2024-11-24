@@ -14,6 +14,8 @@ public class OffshorePump : CraftingEntity
     public override string Name => "Offshore Pump";
     public override string UUID => "offshorePump";
 
+    public override bool IsIntermediate => false; 
+
     public override float CraftingSpeed => 1200.0f;
 
     public override List<Recipe> Recipes => throw new NotImplementedException();

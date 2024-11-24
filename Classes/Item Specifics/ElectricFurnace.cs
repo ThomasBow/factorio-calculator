@@ -12,6 +12,9 @@ public class ElectricFurnace : CraftingEntityWithModules
 
     public override string Name => "Electric Furnace";
     public override string UUID => "electricFurnace";
+
+    public override bool IsIntermediate => false; 
+
     public override List<Recipe> Recipes => 
     [
         

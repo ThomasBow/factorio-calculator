@@ -12,6 +12,8 @@ public class Calcite : Ore
     public override string Name => "Calcite";
     public override string UUID => "calcite";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

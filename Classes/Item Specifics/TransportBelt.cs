@@ -12,6 +12,8 @@ public class TransportBelt : Item
     public override string Name => "Transport Belt";
     public override string UUID => "transportBelt";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes => 
     [
         new(

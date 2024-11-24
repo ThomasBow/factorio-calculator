@@ -13,6 +13,8 @@ public class Lava : Item
     public override string Name => "Lava";
     public override string UUID => "lava";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes =>
     [
         new(

@@ -13,6 +13,8 @@ public class AssemblyMachine2 : CraftingEntityWithModules
     public override string Name => "Assembly Machine 2";
     public override string UUID => "AssemblyMachine2";  
 
+    public override bool IsIntermediate => false; 
+
     public override float CraftingSpeed => 0.75f;
     public override int ModuleCount => 4;
 

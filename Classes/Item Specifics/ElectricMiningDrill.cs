@@ -12,6 +12,9 @@ public class ElectricMiningDrill : CraftingEntityWithModules
 
     public override string Name => "Electric Mining Drill";
     public override string UUID => "electricMiningDrill";
+
+    public override bool IsIntermediate => false; 
+
     public override List<Recipe> Recipes => 
     [
         

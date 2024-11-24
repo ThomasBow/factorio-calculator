@@ -10,8 +10,9 @@ public class SolidFuel : Item
     #endregion
 
     public override string Name => "Solid Fuel";
-
     public override string UUID => "solidFuel";
+
+    public override bool IsIntermediate => true; 
 
     public override List<Recipe> Recipes => 
     [

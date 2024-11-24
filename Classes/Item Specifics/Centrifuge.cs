@@ -13,6 +13,8 @@ public class Centrifuge : CraftingEntityWithModules
     public override string Name => "Centrifuge";
     public override string UUID => "centrifuge";  
 
+    public override bool IsIntermediate => false; 
+
     public override int ModuleCount => 2;
 
     public override float CraftingSpeed => 1.0f;

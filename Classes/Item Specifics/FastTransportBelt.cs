@@ -12,6 +12,8 @@ public class FastTransportBelt : Item
     public override string Name => "Fast Transport Belt";
     public override string UUID => "fastTransportBelt";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes => 
     [
         new(

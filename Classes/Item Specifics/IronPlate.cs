@@ -13,6 +13,8 @@ public class IronPlate : Item
     public override string Name => "Iron Plate";
     public override string UUID => "ironPlate";
 
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes => 
     [
         new(

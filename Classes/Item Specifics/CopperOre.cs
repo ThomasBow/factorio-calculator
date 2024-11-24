@@ -12,6 +12,9 @@ public class CopperOre : Item
 
     public override string Name => "Copper Ore";
     public override string UUID => "copperOre";
+
+    public override bool IsIntermediate => true; 
+
     public override List<Recipe> Recipes => 
     [
         new(

@@ -4,9 +4,9 @@
 public class ItemAndCount
 {
     public readonly Item Item;
-    public readonly int Count;
+    public readonly float Count;
 
-    public ItemAndCount(Item item, int count) {
+    public ItemAndCount(Item item, float count) {
         Item = item;
         Count = count;
     }

@@ -26,5 +26,16 @@ public class RocketFuel : Item
             craftingMachine: AssemblyMachine3.Instance,
             craftingTimeSeconds: 1f
         ),
+        new(
+            result: new(Instance, 1),
+            ingredients: 
+            [
+                new(Bioflux.Instance, 2),
+                new(Jelly.Instance, 30),
+                new(Water.Instance, 30)
+            ],
+            craftingMachine: Biochamber.Instance,
+            craftingTimeSeconds: 10f
+        )
     ];
 }
